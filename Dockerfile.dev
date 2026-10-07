@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-jdk-jammy
+
+WORKDIR /workspace
+
+# Prime the Maven cache with the project's own Maven Wrapper. The source code is
+# bind-mounted by Docker Compose during development.
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+RUN chmod +x mvnw && ./mvnw --batch-mode dependency:go-offline
+
+CMD ["sleep", "infinity"]

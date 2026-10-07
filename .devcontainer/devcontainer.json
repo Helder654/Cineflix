@@ -1,0 +1,15 @@
+{
+  "name": "Cineflix Development",
+  "dockerComposeFile": "../compose.dev.yml",
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "remoteUser": "root",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Cineflix API"
+    }
+  }
+}
