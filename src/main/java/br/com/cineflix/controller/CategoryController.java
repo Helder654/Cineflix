@@ -1,9 +1,12 @@
 package br.com.cineflix.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +33,19 @@ public class CategoryController {
     @PostMapping 
     public Category saveCategory(@RequestBody Category category){
         return categoryService.saveCategory(category);
+    }
+
+    @GetMapping("/{id}")
+    public Category getCategoryById(@PathVariable Long id){
+        Optional<Category> optCategory = categoryService.findById(id);
+            if(optCategory.isPresent()){
+                return optCategory.get();
+            }
+            return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCategoryById(@PathVariable Long id){
+        categoryService.deleteById(id);
     }
 }
