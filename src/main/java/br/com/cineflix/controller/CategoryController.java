@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.cineflix.controller.request.CategoryRequest;
+import br.com.cineflix.controller.response.CategoryResponse;
 import br.com.cineflix.entity.Category;
+import br.com.cineflix.mapper.CategoryMapper;
 import br.com.cineflix.service.CategoryService;
 
 @RestController
@@ -26,20 +29,25 @@ public class CategoryController {
     }
 
     @GetMapping()
-    public List<Category> getAllCategory(){
-        return categoryService.findAll();
+    public List<CategoryResponse> getAllCategory(){
+        List<Category> categories = categoryService.findAll();
+        return categories.stream()
+            .map(category -> CategoryMapper.toCategoryResponse(category))
+            .toList();
     } 
 
     @PostMapping 
-    public Category saveCategory(@RequestBody Category category){
-        return categoryService.saveCategory(category);
+    public CategoryResponse saveCategory(@RequestBody CategoryRequest request){
+        Category newCategory = CategoryMapper.toCategory(request);
+        Category savedCategory = categoryService.saveCategory(newCategory);
+        return CategoryMapper.toCategoryResponse(savedCategory);
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id){
+    public CategoryResponse getCategoryById(@PathVariable Long id){
         Optional<Category> optCategory = categoryService.findById(id);
             if(optCategory.isPresent()){
-                return optCategory.get();
+                return CategoryMapper.toCategoryResponse(optCategory.get());
             }
             return null;
     }
