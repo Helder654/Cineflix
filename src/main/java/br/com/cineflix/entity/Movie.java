@@ -51,13 +51,13 @@ public class Movie {
     private LocalDateTime createdAt;
 
     @UpdateTimestamp 
-    @Column(name = "uptated_at")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @ManyToMany 
     @JoinTable (name = "movie_category",
     joinColumns = @JoinColumn(name = "movie_id"),
-    inverseJoinColumns = @JoinColumn (name = "categoy_id")
+    inverseJoinColumns = @JoinColumn (name = "category_id")
     )
 
     private List<Category> categories;
