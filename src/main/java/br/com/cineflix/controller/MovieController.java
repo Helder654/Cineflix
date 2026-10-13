@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.cineflix.controller.request.MovieRequest;
 import br.com.cineflix.controller.response.MovieResponse;
@@ -26,17 +22,17 @@ public class MovieController {
     public MovieController(MovieService service) {
         this.service = service;
     }
-     
-    @PostMapping
-    public ResponseEntity<MovieResponse> saveMovie(@RequestBody MovieRequest request){
 
-    Movie savedMovie = service.save(MovieMapper.toMovie(request));
-    
-    return ResponseEntity.ok(MovieMapper.toMovieResponse(savedMovie));
-}
+    @PostMapping
+    public ResponseEntity<MovieResponse> saveMovie(@RequestBody MovieRequest request) {
+
+        Movie savedMovie = service.save(MovieMapper.toMovie(request));
+
+        return ResponseEntity.ok(MovieMapper.toMovieResponse(savedMovie));
+    }
 
     @GetMapping
-    public ResponseEntity<List<MovieResponse>> findAll(){
+    public ResponseEntity<List<MovieResponse>> findAll() {
 
         return ResponseEntity.ok(service.findAll()
                 .stream()
@@ -45,5 +41,13 @@ public class MovieController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieResponse> findById(@PathVariable Long id) {
 
+        return service.findById(id)
+                .map(movie -> ResponseEntity.ok(MovieMapper.toMovieResponse(movie)))
+                .orElse(ResponseEntity.notFound().build());
+
+
+    }
 }
