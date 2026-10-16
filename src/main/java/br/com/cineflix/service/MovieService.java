@@ -71,6 +71,10 @@ public class MovieService {
 
     }
 
+    public List<Movie> findByCategories(List<Long> categoryIds) {
+        return repository.findDistinctByCategories_IdIn(categoryIds);
+}
+
     private List<Category> findCategory(List<Category> categories) {
         List<Category> categoriesFound = new ArrayList<>();
         for (Category category : categories) {
