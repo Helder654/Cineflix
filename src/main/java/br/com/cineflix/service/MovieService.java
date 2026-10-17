@@ -89,4 +89,11 @@ public class MovieService {
         }
         return streamingsFound;
     }
+    public void deleteById(Long id){
+
+
+
+        repository.deleteById(id);
+    }
+
 }
