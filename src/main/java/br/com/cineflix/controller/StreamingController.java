@@ -1,6 +1,7 @@
 package br.com.cineflix.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,11 @@ public class StreamingController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStreamingById(@PathVariable Long id){
-        service.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        Optional<Streaming> optStreaming = service.findById(id);
+        if(optStreaming.isPresent()){
+            service.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
