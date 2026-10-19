@@ -29,10 +29,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/cineflix/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/cineflix/auth/resgister").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cineflix/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
-                //.addFilter()
                 .build();
     }
 

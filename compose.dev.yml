@@ -9,6 +9,7 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/${POSTGRES_DB:?Set POSTGRES_DB in .env}"
       SPRING_DATASOURCE_USERNAME: "${POSTGRES_USER:?Set POSTGRES_USER in .env}"
       SPRING_DATASOURCE_PASSWORD: "${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}"
+      SECRET_WORD: "${SECRET_WORD:?Set SECRET_WORD in .env}"
     volumes:
       - .:/workspace
       - maven-repository:/root/.m2

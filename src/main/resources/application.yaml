@@ -14,3 +14,7 @@ spring:
 
   flyway:
     enabled: true
+
+  cineflix:
+    security:
+      secret: ${SECRET_WORD}
