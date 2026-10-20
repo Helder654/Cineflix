@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.cineflix.config.JWTUserData;
 import br.com.cineflix.entity.Category;
 import br.com.cineflix.entity.Streaming;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.cineflix.entity.Movie;
