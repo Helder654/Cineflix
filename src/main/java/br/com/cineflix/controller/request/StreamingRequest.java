@@ -1,8 +1,9 @@
 package br.com.cineflix.controller.request;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 
 @Builder 
-public record StreamingRequest(String name) {
+public record StreamingRequest(@NotEmpty(message = "Nome do streaming e obrigatorio") String name) {
 
 }
