@@ -5,6 +5,7 @@ import br.com.cineflix.controller.response.StreamingResponse;
 import br.com.cineflix.entity.Streaming;
 import br.com.cineflix.mapper.StreamingMapper;
 import br.com.cineflix.service.StreamingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @RestController 
 @RequestMapping("cineflix/streaming")
+@Tag(name = "Streaming", description = "Recurso responsavel pelo gerenciamento dos servicos de streamings.")
 public class StreamingController {
 
     private final StreamingService service;

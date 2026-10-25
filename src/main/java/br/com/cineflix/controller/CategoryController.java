@@ -3,6 +3,7 @@ package br.com.cineflix.controller;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,6 +26,7 @@ import br.com.cineflix.service.CategoryService;
 
 @RestController
 @RequestMapping("/cineflix/category")
+@Tag(name = "Categoria", description = "Recurso responsavel pelo gerenciamento das categorias.")
 public class CategoryController {
 
     private final CategoryService categoryService;

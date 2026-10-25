@@ -9,6 +9,7 @@ import br.com.cineflix.entity.User;
 import br.com.cineflix.exception.UsernameOrPasswordInvalidException;
 import br.com.cineflix.mapper.UserMapper;
 import br.com.cineflix.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cineflix/auth")
+@Tag(name = "Autenticacao", description = "Recurso responsavel pela autenticacao do usuario.")
 public class AuthController {
 
     private final UserService service;
